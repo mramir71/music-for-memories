@@ -8,13 +8,19 @@
     <title>Music For Memories</title>
 
     <!-- Import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
 
-    <!-- Import Tone -->
+    <!-- Import needed libraries (Tone, Tensorflow, Magenta, etc) -->
     <script src="https://cdn.jsdelivr.net/npm/tone@14.7.39/build/Tone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/2.0.0/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.19.0/es6/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.19.0/dist/magentamusic.min.js"></script>
+    <!--Models we want to use -->
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.19.0/es6/music_rnn.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.19.0/es6/music_vae.js"></script>
 
     <!-- Import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
+    <script src="script.js" defer></script>
 
 </head>
 
@@ -24,6 +30,7 @@
     <!-- Maybe we can incorporate different sections on this first 
     page for each type of genre a user can pick from? -->
     <button type="button" id="generate-music-btn">Click to listen!</button>
+    <button type="button" id="stop-playing">Done listening?</button>
 </body>
 
 </html>
