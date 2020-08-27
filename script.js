@@ -26,7 +26,7 @@ soundFontPlayer = new mm.SoundFontPlayer('https://storage.googleapis.com/magenta
 //     mvae.initialize().then(() => {
 //         model.sample(1).then((samples) => player2.start(samples[0]));
 //     });
-    
+
 //     // await noteSeqSample;
 //     // console.log(noteSeqSample);
 //     // soundFontPlayer.start(noteSeqSample);
@@ -50,7 +50,7 @@ soundFontPlayer = new mm.SoundFontPlayer('https://storage.googleapis.com/magenta
 // // //     // await modelLoaded;
 
 // // //     // let startingSequence = Tone.urlToNoteSequence('/Sample-Im-A-Believer.mid');
-    
+
 // // // //   music_rnn
 // // // //   .continueSequence(qns, rnn_steps, rnn_temperature)
 // // // //   .then((sample) => rnnPlayer.start(sample));
@@ -60,10 +60,13 @@ soundFontPlayer = new mm.SoundFontPlayer('https://storage.googleapis.com/magenta
 
 // }
 
+//load in the model with the checkpoint
 const improvCheckpoint = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/chord_pitches_improv'
 const improvRNN = new mm.MusicRNN(improvCheckpoint)
 let improvRNNLoaded = improvRNN.initialize()
 
+
+//sequence to initialize model with
 const sequence = {
   ticksPerQuarter: 220,
   totalTime: 28.5,
@@ -113,35 +116,36 @@ const sequence = {
   ]
 }
 
+//
 const quantizedSequence = mm.sequences.quantizeNoteSequence(sequence, 1)
 
 const synth = new Tone.Synth().toDestination()
 
 const startProgram = async () => {
-    try {
-        await improvRNNLoaded;
+  try {
+    await improvRNNLoaded;
 
-        const playGeneratedMelody = () => {
-            improvRNN
-            .continueSequence(quantizedSequence, 60, 1.1, ['Bm', 'Bbm', 'Gb7', 'F7', 'Ab', 'Ab7', 'G7', 'Gb7', 'F7', 'Bb7', 'Eb7', 'AM7'])
-            .then((sample) => {
-                soundFontPlayer.start(sample);
-            });
-        }
-
-        const generatedMelodyButton = document.getElementById('generate-music-btn')
-        generatedMelodyButton.onclick = () => {
-            playGeneratedMelody()
-        }
-
-        const stopMelodyButton = document.getElementById('stop-playing')
-        stopMelodyButton.onclick = () => {
-            soundFontPlayer.stop();
-        }
-
-    } catch (error) {
-        console.error(error)
+    const playGeneratedMelody = () => {
+      improvRNN
+        .continueSequence(quantizedSequence, 60, 1.1, ['Bm', 'Bbm', 'Gb7', 'F7', 'Ab', 'Ab7', 'G7', 'Gb7', 'F7', 'Bb7', 'Eb7', 'AM7'])
+        .then((sample) => {
+          soundFontPlayer.start(sample);
+        });
     }
+
+    const generatedMelodyButton = document.getElementById('generate-music-btn')
+    generatedMelodyButton.onclick = () => {
+      playGeneratedMelody()
+    }
+
+    const stopMelodyButton = document.getElementById('stop-playing')
+    stopMelodyButton.onclick = () => {
+      soundFontPlayer.stop();
+    }
+
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 startProgram();

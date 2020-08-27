@@ -25,12 +25,33 @@
 </head>
 
 <body>
-    <h1> Music for Memories </h1>
-    <h2>Select a category to start listening</h2>
-    <!-- Maybe we can incorporate different sections on this first 
+    <div class="container">
+
+
+
+        <div class="menu">
+            <ul>
+                <li class="active">Home</li>
+                <li>Music</li>
+                <li>About</li>
+            </ul>
+        </div>
+        <h1 class="subtitle"> Music for Memories </h1>
+        <h2 class="subtitle">Select a category to start listening</h2>
+        <!-- Maybe we can incorporate different sections on this first 
     page for each type of genre a user can pick from? -->
-    <button type="button" id="generate-music-btn">Click to listen!</button>
-    <button type="button" id="stop-playing">Done listening?</button>
+        <button type="button" id="generate-music-btn" class='play-btn'><span>Click to listen!</span></button>
+        <button type="button" id="stop-playing" class='done-btn'><span>Done listening?</span></button>
+
+    </div>
+
+    <!-- <div class="banner">
+        <div class="app-text">
+            <h1>Making Music with Machine Learning</h1>
+            <p>Our goal is to provide patients with Alzheimer's an alternative, cost-free way to listen to music</p>
+        </div>>
+    </div> -->
+
 </body>
 
 </html>
