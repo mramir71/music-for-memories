@@ -25,7 +25,8 @@ html,body{
 }  */
 
 .subtitle{
-  margin:50px
+  margin:50px;
+  color: #ffffff;
 }
 .menu ul{
   display:inline-flex;
